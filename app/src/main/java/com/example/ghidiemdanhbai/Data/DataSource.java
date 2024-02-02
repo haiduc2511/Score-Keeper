@@ -45,7 +45,7 @@ public class DataSource {
     }
     public void addNewGame(Game game) {
         ContentValues cv = new ContentValues();
-        cv.put(MySQLiteHelper.COLUMN_GAME_ID, game.getGameId());
+        cv.put(MySQLiteHelper.COLUMN_GAME_PLAYERS_NAMES, game.getGamePlayersNames());
         cv.put(MySQLiteHelper.COLUMN_GAME_NUMBER_OF_PLAYERS, game.getGameNumberOfPlayers());
         cv.put(MySQLiteHelper.COLUMN_GAME_DATE, game.getGameDate());
         database.insert(MySQLiteHelper.TABLE_GAME, null, cv);

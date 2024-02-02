@@ -26,6 +26,10 @@ public class NewPlayerAdapter extends RecyclerView.Adapter<NewPlayerAdapter.NewP
         this.playerViewModel = playerViewModel;
     }
 
+    public Context getContext() {
+        return context;
+    }
+
     @Override
     public void onBindViewHolder(@NonNull NewPlayerViewHolder holder, int position, @NonNull List<Object> payloads) {
         super.onBindViewHolder(holder, position, payloads);

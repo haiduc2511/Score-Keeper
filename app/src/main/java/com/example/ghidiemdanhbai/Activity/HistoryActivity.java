@@ -26,15 +26,6 @@ public class HistoryActivity extends AppCompatActivity {
 
         gameViewModel = new GameViewModel(new DataSource(this));
 
-
-        gameViewModel.getGames().add(new Game(1, "Duc, Minh", 2, "3/2/2023"));
-        gameViewModel.getGames().add(new Game(2, "Duc, Minh", 2, "3/2/2023"));
-        gameViewModel.getGames().add(new Game(3, "Duc, Minh", 2, "3/2/2023"));
-        gameViewModel.getGames().add(new Game(4, "Duc, Minh", 2, "3/2/2023"));
-        gameViewModel.getGames().add(new Game(5, "Duc, Minh", 2, "3/2/2023"));
-        gameViewModel.getGames().add(new Game(6, "Duc, Minh", 2, "3/2/2023"));
-
-
         rvListGames = findViewById(R.id.rv_list_games);
         rvListGames.setLayoutManager(new GridLayoutManager(this, 1));
         adapter = new HistoryAdapter(this, gameViewModel);
