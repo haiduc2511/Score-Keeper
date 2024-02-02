@@ -14,6 +14,15 @@ public class PlayerViewModel {
     private DataSource dataSource;
     private Set<Integer> playersChecked;
 
+
+    public PlayerViewModel(DataSource dataSource) {
+        this.dataSource = dataSource;
+        playersChecked = new HashSet<>();
+        dataSource.open();
+        this.players = this.getAllPlayers();
+
+    }
+
     public List<Player> getPlayers() {
         return players;
     }
@@ -40,13 +49,6 @@ public class PlayerViewModel {
         return playersNames;
     }
 
-    public PlayerViewModel(DataSource dataSource) {
-        this.dataSource = dataSource;
-        playersChecked = new HashSet<>();
-        dataSource.open();
-        this.players = this.getAllPlayers();
-
-    }
 
     public List<Player> getAllPlayers() {
         return dataSource.getAllPlayersFromDatabase();
@@ -58,12 +60,12 @@ public class PlayerViewModel {
 
     public void changePlayerName(Player player, String newName) {
         player.setPlayerName(newName);
-        dataSource.updateName(player.getPlayerId(), newName);
+        dataSource.updatePlayerName(player.getPlayerId(), newName);
     }
 
     public void incrementTimesPlayed(Player player) {
         player.setTimesPlayed(player.getTimesPlayed() + 1);
-        dataSource.updateTimesPlayed(player.getPlayerId(), player.getTimesPlayed());
+        dataSource.updatePlayerTimesPlayed(player.getPlayerId(), player.getTimesPlayed());
     }
 
 }

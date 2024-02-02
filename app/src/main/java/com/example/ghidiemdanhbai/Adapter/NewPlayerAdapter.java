@@ -1,4 +1,4 @@
-package com.example.ghidiemdanhbai;
+package com.example.ghidiemdanhbai.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,14 +10,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ghidiemdanhbai.Data.DataSource;
 import com.example.ghidiemdanhbai.Model.Player;
+import com.example.ghidiemdanhbai.R;
 import com.example.ghidiemdanhbai.ViewModel.PlayerViewModel;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class NewPlayerAdapter extends RecyclerView.Adapter<NewPlayerAdapter.NewPlayerViewHolder> {
     private Context context;

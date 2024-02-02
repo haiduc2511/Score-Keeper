@@ -11,24 +11,38 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     public static final String COLUMN_PLAYER_TIMES_PLAYED = "playerTimesPlayed";
     public static final String COLUMN_PLAYER_IMAGE = "playerImage";
 
-    public static final String DATABASE = "player.db";
+    public static final String DATABASE = "GhiDiemDanhBai.db";
 
-    public static String DATABASE_CREATE = "create table "
+    public static String PLAYER_TABLE_CREATE = "create table "
             + TABLE_PLAYER
             + "( " + COLUMN_PLAYER_ID + " integer primary key autoincrement, "
             + COLUMN_PLAYER_NAME + " text not null,"
             + COLUMN_PLAYER_TIMES_PLAYED + " integer not null,"
             + COLUMN_PLAYER_IMAGE + " text not null);";
 
+    public static final String TABLE_GAME = "game";
+    public static final String COLUMN_GAME_ID = "gameID";
+    public static final String COLUMN_GAME_PLAYERS_NAMES = "gamePlayersNames";
+    public static final String COLUMN_GAME_NUMBER_OF_PLAYERS = "gameNumberOfPlayers";
+    public static final String COLUMN_GAME_DATE = "gameDate";
+
+    public static String GAME_TABLE_CREATE = "create table "
+            + TABLE_GAME
+            + "( " + COLUMN_GAME_ID + " integer primary key autoincrement, "
+            + COLUMN_GAME_PLAYERS_NAMES + " text not null,"
+            + COLUMN_GAME_NUMBER_OF_PLAYERS + " text not null,"
+            + COLUMN_GAME_DATE + " text not null);";
+
 
 
     public MySQLiteHelper(Context context) {
-        super(context, DATABASE_CREATE, null, 1);
+        super(context, DATABASE, null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(DATABASE_CREATE);
+        db.execSQL(PLAYER_TABLE_CREATE);
+        db.execSQL(GAME_TABLE_CREATE);
     }
 
     @Override

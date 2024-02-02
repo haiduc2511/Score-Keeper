@@ -9,17 +9,17 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.ghidiemdanhbai.Data.DataSource;
-import com.example.ghidiemdanhbai.NewPlayerAdapter;
-import com.example.ghidiemdanhbai.Model.Player;
+import com.example.ghidiemdanhbai.Model.Game;
+import com.example.ghidiemdanhbai.Adapter.NewPlayerAdapter;
+import com.example.ghidiemdanhbai.Utils.TimeUtils;
+import com.example.ghidiemdanhbai.ViewModel.GameViewModel;
 import com.example.ghidiemdanhbai.ViewModel.PlayerViewModel;
 import com.example.ghidiemdanhbai.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class NewGameActivity extends AppCompatActivity {
     private PlayerViewModel playerViewModel;
+    private GameViewModel gameViewModel;
     private RecyclerView rvListPlayers;
     private NewPlayerAdapter adapter;
     private FloatingActionButton fabAddNewPlayer;
@@ -30,7 +30,9 @@ public class NewGameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_game);
 
-        playerViewModel = new PlayerViewModel(new DataSource(this));
+        DataSource dataSource = new DataSource(this);
+        playerViewModel = new PlayerViewModel(dataSource);
+        gameViewModel = new GameViewModel(dataSource);
 
         rvListPlayers = findViewById(R.id.rv_list_players);
         rvListPlayers.setLayoutManager(new GridLayoutManager(this, 4));
@@ -45,6 +47,11 @@ public class NewGameActivity extends AppCompatActivity {
 
         tvNewGame = findViewById(R.id.tv_new_game);
         tvNewGame.setOnClickListener(v -> {
+
+            Game game = new Game(playerViewModel.getPlayersForNewGame().toString(),
+                    playerViewModel.getPlayersForNewGame().size(),
+                    TimeUtils.getNow());
+            gameViewModel.addNewGame(game);
             Intent intent = new Intent(NewGameActivity.this, GameActivity.class);
             Bundle bundle = new Bundle();
             bundle.putStringArrayList("Players' Names", playerViewModel.getPlayersForNewGame());
