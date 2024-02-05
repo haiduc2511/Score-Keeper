@@ -32,6 +32,18 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + COLUMN_GAME_PLAYERS_NAMES + " text not null,"
             + COLUMN_GAME_NUMBER_OF_PLAYERS + " text not null,"
             + COLUMN_GAME_DATE + " text not null);";
+    public static final String TABLE_MATCH = "match";
+    public static final String COLUMN_MATCH_ID = "matchID";
+    public static final String COLUMN_MATCH_GAME_ID = "matchGameID";
+    public static final String COLUMN_MATCH_PLAYERS_NAMES = "matchPlayersNames";
+    public static final String COLUMN_MATCH_PLAYERS_RESULTS = "matchPlayersResults";
+
+    public static String MATCH_TABLE_CREATE = "create table "
+            + TABLE_MATCH
+            + "( " + COLUMN_MATCH_ID + " integer primary key autoincrement, "
+            + COLUMN_MATCH_GAME_ID + " integer not null,"
+            + COLUMN_MATCH_PLAYERS_NAMES + " text not null,"
+            + COLUMN_MATCH_PLAYERS_RESULTS + " text not null);";
 
 
 
@@ -43,6 +55,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(PLAYER_TABLE_CREATE);
         db.execSQL(GAME_TABLE_CREATE);
+        db.execSQL(MATCH_TABLE_CREATE);
     }
 
     @Override

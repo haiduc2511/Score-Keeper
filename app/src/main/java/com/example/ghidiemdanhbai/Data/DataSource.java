@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.ghidiemdanhbai.Model.Game;
+import com.example.ghidiemdanhbai.Model.Match;
 import com.example.ghidiemdanhbai.Model.Player;
 
 import java.util.ArrayList;
@@ -22,6 +23,10 @@ public class DataSource {
             MySQLiteHelper.COLUMN_GAME_PLAYERS_NAMES,
             MySQLiteHelper.COLUMN_GAME_NUMBER_OF_PLAYERS,
             MySQLiteHelper.COLUMN_GAME_DATE};
+    private String[] allMatchColumns = {MySQLiteHelper.COLUMN_MATCH_ID,
+            MySQLiteHelper.COLUMN_MATCH_GAME_ID,
+            MySQLiteHelper.COLUMN_MATCH_PLAYERS_NAMES,
+            MySQLiteHelper.COLUMN_MATCH_PLAYERS_RESULTS};
 
     public DataSource(Context context) {
         sqLiteHelper = new MySQLiteHelper(context);
@@ -50,12 +55,29 @@ public class DataSource {
         cv.put(MySQLiteHelper.COLUMN_GAME_DATE, game.getGameDate());
         database.insert(MySQLiteHelper.TABLE_GAME, null, cv);
     }
-
-
+    public void addNewMatch(Match match) {
+        ContentValues cv = new ContentValues();
+        cv.put(MySQLiteHelper.COLUMN_MATCH_GAME_ID, match.getMatchGameId());
+        cv.put(MySQLiteHelper.COLUMN_MATCH_PLAYERS_NAMES, match.getMatchPlayersNames());
+        cv.put(MySQLiteHelper.COLUMN_MATCH_PLAYERS_RESULTS, match.getMatchPlayersResults());
+        database.insert(MySQLiteHelper.TABLE_MATCH, null, cv);
+    }
 
     public void deletePlayer(Player player) {
         database.delete(MySQLiteHelper.TABLE_PLAYER,
                 MySQLiteHelper.COLUMN_PLAYER_ID + " = " + player.getPlayerId() , null);
+    }
+    //phải xóa cả các matches có cùng idGame
+    public void deleteGame(Game game) {
+        database.delete(MySQLiteHelper.TABLE_GAME,
+                MySQLiteHelper.COLUMN_PLAYER_ID + " = " + game.getGameId() , null);
+        this.deleteMatch(game);
+    }
+
+    //Chưa test
+    public void deleteMatch(Game game) {
+        database.delete(MySQLiteHelper.TABLE_MATCH,
+                MySQLiteHelper.COLUMN_MATCH_GAME_ID + " = " + game.getGameId() , null);
     }
 
     //Get All
@@ -96,6 +118,42 @@ public class DataSource {
 
         cursor.close();
         return games;
+    }
+
+    public Game getLatestGameFromDatabase() {
+        Cursor cursor = database.query(MySQLiteHelper.TABLE_GAME,
+                allGameColumns, null, null, null, null, null);
+
+        cursor.moveToLast();
+        Game game = new Game(cursor.getInt(0),
+                cursor.getString(1),
+                cursor.getInt(2),
+                cursor.getString(3));
+
+        cursor.close();
+        return game;
+    }
+
+    public List<Match> getAllMatchesFromGameFromDatabase(Game game) {
+        List<Match> matches = new ArrayList<>();
+
+        Cursor cursor = database.query(MySQLiteHelper.TABLE_MATCH,
+                allMatchColumns, null, null, null, null, null);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            if (game.getGameId() == cursor.getInt(1)) {
+                Match match = new Match(cursor.getInt(0),
+                        cursor.getInt(1),
+                        cursor.getString(2),
+                        cursor.getString(3));
+                matches.add(match);
+                cursor.moveToNext();
+            }
+        }
+
+        cursor.close();
+        return matches;
     }
 
 
@@ -139,6 +197,13 @@ public class DataSource {
         database.update(MySQLiteHelper.TABLE_PLAYER, cv,
                 MySQLiteHelper.COLUMN_GAME_ID + " = ?", new String[] {String.valueOf(id)});
     }
+    public void updateMatchPlayersResults(int id, String matchPlayersResults) {
+        ContentValues cv = new ContentValues();
+        cv.put(MySQLiteHelper.COLUMN_MATCH_PLAYERS_RESULTS, matchPlayersResults);
+        database.update(MySQLiteHelper.TABLE_MATCH, cv,
+                MySQLiteHelper.COLUMN_MATCH_PLAYERS_RESULTS + " = ?", new String[] {String.valueOf(id)});
+    }
+
 
 }
 

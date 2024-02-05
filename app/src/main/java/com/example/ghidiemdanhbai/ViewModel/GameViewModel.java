@@ -2,9 +2,7 @@ package com.example.ghidiemdanhbai.ViewModel;
 
 import com.example.ghidiemdanhbai.Data.DataSource;
 import com.example.ghidiemdanhbai.Model.Game;
-import com.example.ghidiemdanhbai.Model.Player;
 
-import java.util.HashSet;
 import java.util.List;
 
 public class GameViewModel {
@@ -31,6 +29,10 @@ public class GameViewModel {
     }
     public void addNewGame(Game game) {
         dataSource.addNewGame(game);
+    }
+
+    public Game getLatestGame() {
+        return dataSource.getLatestGameFromDatabase();
     }
 
 }

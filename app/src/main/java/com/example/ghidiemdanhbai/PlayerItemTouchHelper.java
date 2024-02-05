@@ -46,11 +46,11 @@ public class PlayerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            adapter.notifyItemChanged(viewHolder.getAdapterPosition());
                             playerViewModel.deletePlayer(playerViewModel.getPlayers().get(position));
                             Toast.makeText(adapter.getContext(),
                                     "deleted player " + playerViewModel.getPlayers().get(position).getPlayerName()
                                     , Toast.LENGTH_SHORT).show();
+                            adapter.notifyItemChanged(viewHolder.getAdapterPosition());
                         }
                     });
             builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {

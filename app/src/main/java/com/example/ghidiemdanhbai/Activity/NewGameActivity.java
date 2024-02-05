@@ -8,13 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.ghidiemdanhbai.Data.DataSource;
 import com.example.ghidiemdanhbai.Model.Game;
 import com.example.ghidiemdanhbai.Adapter.NewPlayerAdapter;
-import com.example.ghidiemdanhbai.Model.Player;
 import com.example.ghidiemdanhbai.PlayerItemTouchHelper;
+import com.example.ghidiemdanhbai.Utils.StringUtils;
 import com.example.ghidiemdanhbai.Utils.TimeUtils;
 import com.example.ghidiemdanhbai.ViewModel.GameViewModel;
 import com.example.ghidiemdanhbai.ViewModel.PlayerViewModel;
@@ -59,13 +58,14 @@ public class NewGameActivity extends AppCompatActivity {
         tvNewGame.setOnClickListener(v -> {
             //reminder just use getPlayersForNewGame once
             ArrayList<String> playersNamesForNewGame = playerViewModel.getPlayersForNewGame();
-            Game game = new Game(playersNamesForNewGame.toString(),
+            Game game = new Game(StringUtils.convertArrayListToString(playersNamesForNewGame),
                     playersNamesForNewGame.size(),
                     TimeUtils.getNow());
             gameViewModel.addNewGame(game);
             Intent intent = new Intent(NewGameActivity.this, GameActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putStringArrayList("Players' Names", playersNamesForNewGame);
+            bundle.putString("Players' Names", StringUtils.convertArrayListToString(playersNamesForNewGame));
+            bundle.putInt("Game's id", -1);
             intent.putExtras(bundle);
             startActivity(intent);
         });

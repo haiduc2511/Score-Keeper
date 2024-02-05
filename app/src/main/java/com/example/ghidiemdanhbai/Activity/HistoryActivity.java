@@ -6,14 +6,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-import com.example.ghidiemdanhbai.Data.DataSource;
 import com.example.ghidiemdanhbai.Adapter.HistoryAdapter;
-import com.example.ghidiemdanhbai.Model.Game;
+import com.example.ghidiemdanhbai.Data.DataSource;
 import com.example.ghidiemdanhbai.R;
 import com.example.ghidiemdanhbai.ViewModel.GameViewModel;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class HistoryActivity extends AppCompatActivity {
     private GameViewModel gameViewModel;

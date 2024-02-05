@@ -1,6 +1,10 @@
 package com.example.ghidiemdanhbai.Adapter;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ghidiemdanhbai.Activity.GameActivity;
 import com.example.ghidiemdanhbai.Model.Game;
 import com.example.ghidiemdanhbai.R;
 import com.example.ghidiemdanhbai.ViewModel.GameViewModel;
@@ -45,6 +50,14 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         holder.tvGamePlayersNames.setText(game.getGamePlayersNames());
         holder.tvGameNumberOfPlayers.setText(Integer.toString(game.getGameNumberOfPlayers()));
         holder.tvGameDate.setText(game.getGameDate());
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, GameActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("Players' Names", game.getGamePlayersNames());
+            bundle.putInt("Game's id", game.getGameId());
+            intent.putExtras(bundle);
+            startActivity(context, intent, bundle);
+        });
     }
 
     @Override
