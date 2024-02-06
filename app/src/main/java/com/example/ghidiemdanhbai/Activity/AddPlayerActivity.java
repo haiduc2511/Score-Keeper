@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.ghidiemdanhbai.Data.DataSource;
 import com.example.ghidiemdanhbai.Model.Player;
@@ -25,10 +26,14 @@ public class AddPlayerActivity extends AppCompatActivity {
         Button btAddPlayer = findViewById(R.id.bt_add_player);
 
         btAddPlayer.setOnClickListener(v -> {
-            Player player = new Player(etPlayerName.getText().toString(), 0,
-                    R.drawable.baseline_person_24);
-            playerViewModel.addNewPlayer(player);
-            etPlayerName.setText("");
+            if (etPlayerName.getText().toString().equals("")) {
+                Toast.makeText(this, "Tên người chơi để trống cl", Toast.LENGTH_SHORT).show();
+            } else {
+                Player player = new Player(etPlayerName.getText().toString(), 0,
+                        R.drawable.baseline_person_24);
+                playerViewModel.addNewPlayer(player);
+                etPlayerName.setText("");
+            }
         });
     }
 }

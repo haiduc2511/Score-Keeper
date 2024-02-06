@@ -1,4 +1,4 @@
-package com.example.ghidiemdanhbai;
+package com.example.ghidiemdanhbai.Utils;
 
 import android.content.DialogInterface;
 import android.graphics.Canvas;
@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ghidiemdanhbai.Adapter.NewPlayerAdapter;
+import com.example.ghidiemdanhbai.R;
 import com.example.ghidiemdanhbai.ViewModel.PlayerViewModel;
 
 

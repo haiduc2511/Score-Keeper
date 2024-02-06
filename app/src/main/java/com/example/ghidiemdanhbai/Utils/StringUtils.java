@@ -17,6 +17,21 @@ public class StringUtils {
 
         return resultList;
     }
+    public static String convertArrayListToString(ArrayList<String> list) {
+        if (list == null || list.isEmpty()) {
+            return "";
+        }
+
+        StringBuilder result = new StringBuilder();
+
+        result.append(list.get(0));
+
+        for (int i = 1; i < list.size(); i++) {
+            result.append(", ").append(list.get(i));
+        }
+
+        return result.toString();
+    }
 
     public static String convertArrayListToString(List<String> list) {
         if (list == null || list.isEmpty()) {

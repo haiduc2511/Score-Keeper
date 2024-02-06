@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.ghidiemdanhbai.Adapter.MatchAdapter;
-import com.example.ghidiemdanhbai.AddUpdateMatchFragment;
+import com.example.ghidiemdanhbai.Fragment.AddUpdateMatchFragment;
 import com.example.ghidiemdanhbai.Data.DataSource;
 import com.example.ghidiemdanhbai.R;
 import com.example.ghidiemdanhbai.ViewModel.GameViewModel;
@@ -44,7 +44,7 @@ public class GameActivity extends AppCompatActivity {
 
         TextView tv2 = findViewById(R.id.textView);
         tv2.setText(Integer.toString(matchViewModel.getGame().getGameId()));
-
+//
         rvListMatches = findViewById(R.id.rv_list_matches);
         rvListMatches.setLayoutManager(new GridLayoutManager(this, 1));
         adapter = new MatchAdapter(this, matchViewModel, gameViewModel);

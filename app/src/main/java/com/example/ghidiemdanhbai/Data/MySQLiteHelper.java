@@ -32,7 +32,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + COLUMN_GAME_PLAYERS_NAMES + " text not null,"
             + COLUMN_GAME_NUMBER_OF_PLAYERS + " text not null,"
             + COLUMN_GAME_DATE + " text not null);";
-    public static final String TABLE_MATCH = "match";
+    public static final String TABLE_MATCH = "match_table";
     public static final String COLUMN_MATCH_ID = "matchID";
     public static final String COLUMN_MATCH_GAME_ID = "matchGameID";
     public static final String COLUMN_MATCH_PLAYERS_NAMES = "matchPlayersNames";

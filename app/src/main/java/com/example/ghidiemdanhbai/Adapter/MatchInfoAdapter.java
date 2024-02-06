@@ -1,4 +1,4 @@
-package com.example.ghidiemdanhbai;
+package com.example.ghidiemdanhbai.Adapter;
 
 import android.content.Context;
 import android.text.Editable;
@@ -8,12 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.ghidiemdanhbai.Model.Match;
+import com.example.ghidiemdanhbai.R;
 import com.example.ghidiemdanhbai.Utils.StringUtils;
 import com.example.ghidiemdanhbai.ViewModel.MatchViewModel;
 
@@ -25,6 +27,7 @@ public class MatchInfoAdapter extends ArrayAdapter<String> {
     private Context context;
     private List<String> names;
     private List<String> results;
+    private String[] numbers;
 
     public List<String> getNames() {
         return names;
@@ -34,11 +37,13 @@ public class MatchInfoAdapter extends ArrayAdapter<String> {
         return results;
     }
 
+
     public MatchInfoAdapter(Context context, MatchViewModel matchViewModel) {
         super(context, 0, StringUtils.convertStringToArrayList(matchViewModel.getGame().getGamePlayersNames()));
         names = StringUtils.convertStringToArrayList(matchViewModel.getGame().getGamePlayersNames());
         this.context = context;
         this.matchViewModel = matchViewModel;
+        numbers = context.getResources().getStringArray(R.array.numbers);
         results = new ArrayList<>();
         for (int i = 0; i < names.size(); i++) {
             results.add("0");
@@ -73,6 +78,15 @@ public class MatchInfoAdapter extends ArrayAdapter<String> {
             public void afterTextChanged(Editable s) {
                 results.set(position, etPlayerResult.getText().toString());
             }
+        });
+
+        NumberPicker numberPicker = convertView.findViewById(R.id.np_match_info_player_result_2);
+        numberPicker.setMinValue(0);
+        numberPicker.setMaxValue(40);
+        numberPicker.setValue(20);
+        numberPicker.setDisplayedValues(numbers);
+        numberPicker.setOnValueChangedListener((picker, oldVal, newVal) -> {
+            etPlayerResult.setText(numbers[newVal]);
         });
 
         return convertView;

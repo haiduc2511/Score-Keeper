@@ -1,4 +1,4 @@
-package com.example.ghidiemdanhbai;
+package com.example.ghidiemdanhbai.Fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,13 +8,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.ghidiemdanhbai.Adapter.MatchInfoAdapter;
 import com.example.ghidiemdanhbai.Model.Match;
+import com.example.ghidiemdanhbai.R;
 import com.example.ghidiemdanhbai.Utils.StringUtils;
 import com.example.ghidiemdanhbai.ViewModel.GameViewModel;
 import com.example.ghidiemdanhbai.ViewModel.MatchViewModel;

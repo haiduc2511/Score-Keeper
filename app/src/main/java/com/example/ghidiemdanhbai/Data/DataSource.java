@@ -148,8 +148,8 @@ public class DataSource {
                         cursor.getString(2),
                         cursor.getString(3));
                 matches.add(match);
-                cursor.moveToNext();
             }
+            cursor.moveToNext();
         }
 
         cursor.close();

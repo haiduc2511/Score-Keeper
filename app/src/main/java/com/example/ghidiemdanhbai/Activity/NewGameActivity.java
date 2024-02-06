@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.example.ghidiemdanhbai.Data.DataSource;
 import com.example.ghidiemdanhbai.Model.Game;
 import com.example.ghidiemdanhbai.Adapter.NewPlayerAdapter;
-import com.example.ghidiemdanhbai.PlayerItemTouchHelper;
+import com.example.ghidiemdanhbai.Utils.PlayerItemTouchHelper;
 import com.example.ghidiemdanhbai.Utils.StringUtils;
 import com.example.ghidiemdanhbai.Utils.TimeUtils;
 import com.example.ghidiemdanhbai.ViewModel.GameViewModel;
