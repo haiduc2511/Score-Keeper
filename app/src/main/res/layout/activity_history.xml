@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.HistoryActivity">
+    tools:context=".Activity.HistoryActivity"
+    android:background="@drawable/background_history">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_list_games"

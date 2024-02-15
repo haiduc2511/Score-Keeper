@@ -56,17 +56,11 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
     }
 
     class MatchViewHolder extends RecyclerView.ViewHolder {
-        TextView tvMatchId;
-        TextView tvMatchGameId;
-        TextView tvMatchPlayersNames;
         TextView tvMatchPlayersResults;
 
 
         public MatchViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.tvMatchId = itemView.findViewById(R.id.tv_match_id);
-            this.tvMatchGameId = itemView.findViewById(R.id.tv_match_game_id);
-            this.tvMatchPlayersNames = itemView.findViewById(R.id.tv_match_players_names);
             this.tvMatchPlayersResults = itemView.findViewById(R.id.tv_match_players_results);
         }
     }

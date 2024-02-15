@@ -23,7 +23,8 @@
             app:cardCornerRadius="30dp">
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="#123499">
 
                 <GridView
                     android:id="@+id/lv_match_infos"

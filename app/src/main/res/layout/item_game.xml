@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:backgroundTint="#E4A0F7"
+    android:backgroundTint="#123499"
     app:cardCornerRadius="10dp">
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,6 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="id"
+            android:textColor="@color/white"
             android:layout_weight="1"/>
 
         <TextView
@@ -24,13 +25,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="names"
-            android:layout_weight="6"/>
+            android:textColor="@color/white"
+            android:layout_weight="6"
+            android:ellipsize="end"/>
 
         <TextView
             android:id="@+id/tv_game_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="date"
+            android:textColor="@color/white"
             android:layout_weight="2"/>
 
         <TextView
@@ -38,6 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="number of players"
+            android:textColor="@color/white"
             android:layout_weight="1"/>
     </LinearLayout>
 

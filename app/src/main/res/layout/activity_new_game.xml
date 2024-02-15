@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.NewGameActivity">
+    tools:context=".Activity.NewGameActivity"
+    android:background="@drawable/background_new_game">
 
     <TextView
         android:id="@+id/tv_new_game"
@@ -12,6 +13,7 @@
         android:layout_height="wrap_content"
         android:text="Tạo ván mới"
         android:textSize="30dp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
