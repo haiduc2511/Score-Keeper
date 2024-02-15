@@ -3,7 +3,9 @@ package com.example.ghidiemdanhbai.ViewModel;
 import com.example.ghidiemdanhbai.Data.DataSource;
 import com.example.ghidiemdanhbai.Model.Game;
 import com.example.ghidiemdanhbai.Model.Match;
+import com.example.ghidiemdanhbai.Utils.StringUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MatchViewModel {
@@ -44,8 +46,19 @@ public class MatchViewModel {
     }
     public void addNewMatch(Match match) {dataSource.addNewMatch(match);}
 
-    public List<Match> getAllMatches() {
+    private List<Match> getAllMatches() {
         return dataSource.getAllMatchesFromGameFromDatabase(game);
     }
 
+    public List<String> getListResult() {
+        List<String> playersNamesList = StringUtils.convertStringToArrayList(getGame().getGamePlayersNames());
+        List<String> resultsList = new ArrayList<>();
+        for (int i = 0; i < matches.size(); i++) {
+            List<String> matchResultList = StringUtils.convertStringToArrayList(matches.get(i).getMatchPlayersResults());
+            for (int j = 0; j < game.getGameNumberOfPlayers(); j++) {
+                resultsList.add(playersNamesList.get(j) + " " + matchResultList.get(j));
+            }
+        }
+        return resultsList;
+    }
 }

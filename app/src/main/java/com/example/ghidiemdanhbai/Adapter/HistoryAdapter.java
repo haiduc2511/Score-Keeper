@@ -30,6 +30,11 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         this.gameViewModel = gameViewModel;
     }
 
+    public Context getContext() {
+        return context;
+    }
+
+
     @Override
     public void onBindViewHolder(@NonNull HistoryViewHolder holder, int position, @NonNull List<Object> payloads) {
         super.onBindViewHolder(holder, position, payloads);

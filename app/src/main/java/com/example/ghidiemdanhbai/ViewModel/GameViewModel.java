@@ -2,6 +2,7 @@ package com.example.ghidiemdanhbai.ViewModel;
 
 import com.example.ghidiemdanhbai.Data.DataSource;
 import com.example.ghidiemdanhbai.Model.Game;
+import com.example.ghidiemdanhbai.Model.Player;
 
 import java.util.List;
 
@@ -34,5 +35,16 @@ public class GameViewModel {
     public Game getLatestGame() {
         return dataSource.getLatestGameFromDatabase();
     }
+    public void deleteGame(Game game) {dataSource.deleteGame(game);}
+
+    public Game getGameById(int id) {
+        for (Game game : games) {
+            if (game.getGameId() == id) {
+                return game;
+            }
+        }
+        return new Game("", 0 , "");
+    }
+
 
 }

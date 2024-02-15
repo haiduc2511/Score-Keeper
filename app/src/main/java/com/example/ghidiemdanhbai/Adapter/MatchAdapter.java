@@ -19,12 +19,12 @@ import java.util.List;
 public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHolder> {
     private Context context;
     private MatchViewModel matchViewModel;
-    private GameViewModel gameViewModel;
+    private List<String> resultList;
 
-    public MatchAdapter(Context context, MatchViewModel matchViewModel, GameViewModel gameViewModel) {
+    public MatchAdapter(Context context, MatchViewModel matchViewModel) {
         this.context = context;
         this.matchViewModel = matchViewModel;
-        this.gameViewModel = gameViewModel;
+        resultList = matchViewModel.getListResult();
     }
 
     @Override
@@ -42,16 +42,17 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
 
     @Override
     public void onBindViewHolder(@NonNull MatchViewHolder holder, int position) {
-        Match match = matchViewModel.getMatches().get(position);
-        holder.tvMatchId.setText(Integer.toString(match.getMatchId()));
-        holder.tvMatchGameId.setText(Integer.toString(match.getMatchGameId()));
-        holder.tvMatchPlayersNames.setText(match.getMatchPlayersNames());
-        holder.tvMatchPlayersResults.setText(match.getMatchPlayersResults());
+//        Match match = matchViewModel.getMatches().get(position);
+//        holder.tvMatchId.setText(Integer.toString(match.getMatchId()));
+//        holder.tvMatchGameId.setText(Integer.toString(match.getMatchGameId()));
+//        holder.tvMatchPlayersNames.setText(match.getMatchPlayersNames());
+//        holder.tvMatchPlayersResults.setText(match.getMatchPlayersResults());
+        holder.tvMatchPlayersResults.setText(resultList.get(position).toString());
     }
 
     @Override
     public int getItemCount() {
-        return matchViewModel.getMatches().size();
+        return resultList.size();
     }
 
     class MatchViewHolder extends RecyclerView.ViewHolder {

@@ -70,7 +70,7 @@ public class DataSource {
     //phải xóa cả các matches có cùng idGame
     public void deleteGame(Game game) {
         database.delete(MySQLiteHelper.TABLE_GAME,
-                MySQLiteHelper.COLUMN_PLAYER_ID + " = " + game.getGameId() , null);
+                MySQLiteHelper.COLUMN_GAME_ID + " = " + game.getGameId() , null);
         this.deleteMatch(game);
     }
 

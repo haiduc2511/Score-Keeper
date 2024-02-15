@@ -4,47 +4,93 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.MainActivity">
+    tools:context=".Activity.MainActivity"
+    android:background="@drawable/blue">
 
     <TextView
         android:id="@+id/greetings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Chào con nghiện"
-        android:textSize="15dp"
+        android:textSize="20dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/guideline">
 
-    <Button
-        android:id="@+id/bt_new_game"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:text="Tạo ván mới"
-        android:textSize="30dp"
-        android:layout_margin="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/bt_history"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
+        <TextView
+            android:id="@+id/bt_new_game"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="#151e3d"
+            android:gravity="center"
+            android:text="Tạo ván mới"
+            android:textColor="@color/white"
+            android:textSize="50dp" />
 
-    <Button
-        android:id="@+id/bt_history"
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:text="Lịch sử thi đấu"
-        android:textSize="30dp"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        app:cardCornerRadius="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2">
+
+        <TextView
+            android:id="@+id/bt_history"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="#151e3d"
+            android:gravity="center"
+            android:text="Lịch sử thi đấu"
+            android:textColor="@color/white"
+            android:textSize="50dp" />
+
+    </androidx.cardview.widget.CardView>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="68dp" />
+        app:layout_constraintGuide_begin="134dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ghi điểm đánh bài "
+        android:textSize="40dp"
+        android:textColor="@color/white"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="made by haiduc"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

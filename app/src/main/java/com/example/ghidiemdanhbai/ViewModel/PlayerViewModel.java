@@ -58,7 +58,10 @@ public class PlayerViewModel {
         dataSource.addNewPlayer(player);
     }
 
-    public void deletePlayer(Player player) {dataSource.deletePlayer(player);}
+    public void deletePlayer(Player player) {
+        dataSource.deletePlayer(player);
+        players.remove(player);
+    }
 
     public void changePlayerName(Player player, String newName) {
         player.setPlayerName(newName);

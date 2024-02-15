@@ -30,15 +30,35 @@ public class NewGameActivity extends AppCompatActivity {
     private FloatingActionButton fabAddNewPlayer;
     private TextView tvNewGame;
 
+    private FloatingActionButton fabTestNotifyRV;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_game);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initData();
+        initRecyclerView();
+        initFabAddNewPlayer();
+        initTvNewGame();
+
+        fabTestNotifyRV = findViewById(R.id.floatingActionButton);
+        fabTestNotifyRV.setOnClickListener(v -> {
+            adapter.notifyDataSetChanged();
+        });
+    }
+
+    public void initData() {
         DataSource dataSource = new DataSource(this);
         playerViewModel = new PlayerViewModel(dataSource);
         gameViewModel = new GameViewModel(dataSource);
+    }
 
+    public void initRecyclerView() {
         rvListPlayers = findViewById(R.id.rv_list_players);
         rvListPlayers.setLayoutManager(new GridLayoutManager(this, 4));
         adapter = new NewPlayerAdapter(this, playerViewModel);
@@ -47,13 +67,17 @@ public class NewGameActivity extends AppCompatActivity {
         PlayerItemTouchHelper playerItemTouchHelper = new PlayerItemTouchHelper(adapter, playerViewModel);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(playerItemTouchHelper);
         itemTouchHelper.attachToRecyclerView(rvListPlayers);
+    }
 
+    public void initFabAddNewPlayer(){
         fabAddNewPlayer = findViewById(R.id.fab_add_new_player);
         fabAddNewPlayer.setOnClickListener(v -> {
             Intent intent = new Intent(NewGameActivity.this, AddPlayerActivity.class);
             startActivity(intent);
         });
+    }
 
+    public void initTvNewGame() {
         tvNewGame = findViewById(R.id.tv_new_game);
         tvNewGame.setOnClickListener(v -> {
             //reminder just use getPlayersForNewGame once
@@ -69,6 +93,7 @@ public class NewGameActivity extends AppCompatActivity {
             intent.putExtras(bundle);
             startActivity(intent);
         });
-
     }
+
+
 }

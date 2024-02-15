@@ -1,5 +1,6 @@
 package com.example.ghidiemdanhbai.Utils;
 
+
 import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -14,20 +15,21 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ghidiemdanhbai.Adapter.HistoryAdapter;
 import com.example.ghidiemdanhbai.Adapter.NewPlayerAdapter;
 import com.example.ghidiemdanhbai.R;
+import com.example.ghidiemdanhbai.ViewModel.GameViewModel;
 import com.example.ghidiemdanhbai.ViewModel.PlayerViewModel;
 
+public class GameItemTouchHelper extends ItemTouchHelper.SimpleCallback {
 
-public class PlayerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
+    private HistoryAdapter adapter;
+    private GameViewModel gameViewModel;
 
-    private NewPlayerAdapter adapter;
-    private PlayerViewModel playerViewModel;
-
-    public PlayerItemTouchHelper(NewPlayerAdapter adapter, PlayerViewModel playerViewModel) {
+    public GameItemTouchHelper(HistoryAdapter adapter, GameViewModel gameViewModel) {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         this.adapter = adapter;
-        this.playerViewModel = playerViewModel;
+        this.gameViewModel = gameViewModel;
     }
 
     @Override
@@ -41,16 +43,17 @@ public class PlayerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
         if (direction == ItemTouchHelper.LEFT) {
             AlertDialog.Builder builder = new AlertDialog.Builder(adapter.getContext());
             builder.setTitle("Delete Player");
-            builder.setMessage("Are you sure you want to delete " +
-                    playerViewModel.getPlayers().get(position).getPlayerName() + " ?");
+            builder.setMessage("Are you sure you want to delete game ID " +
+                    gameViewModel.getGames().get(position).getGameId() + " ?");
             builder.setPositiveButton("Confirm",
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            playerViewModel.deletePlayer(playerViewModel.getPlayers().get(position));
+                            gameViewModel.deleteGame(gameViewModel.getGames().get(position));
                             Toast.makeText(adapter.getContext(),
-                                    "deleted player " + playerViewModel.getPlayers().get(position).getPlayerName()
+                                    "deleted game " + gameViewModel.getGames().get(position).getGameId()
                                     , Toast.LENGTH_SHORT).show();
+                            adapter.notifyItemChanged(viewHolder.getAdapterPosition());
                         }
                     });
             builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
@@ -62,7 +65,7 @@ public class PlayerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
             AlertDialog dialog = builder.create();
             dialog.show();
         } else {
-            Toast.makeText(adapter.getContext(), "Méo cho edit tên heh (chủ yếu do lười :v) " + position, Toast.LENGTH_SHORT).show();
+            Toast.makeText(adapter.getContext(), "lười lắm k cho edit đâuu " + position, Toast.LENGTH_SHORT).show();
         }
         adapter.notifyItemChanged(viewHolder.getAdapterPosition());
     }
@@ -114,4 +117,3 @@ public class PlayerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
 
 
 }
-

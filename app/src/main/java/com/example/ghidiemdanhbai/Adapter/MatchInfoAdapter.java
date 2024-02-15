@@ -33,7 +33,8 @@ public class MatchInfoAdapter extends ArrayAdapter<String> {
         return names;
     }
 
-    public List<String> getResults() {
+    public List<String> getResultsAndAddIndex() {
+        //results.add(0, Integer.toString(matchViewModel.getMatches().size() + 1));
         return results;
     }
 
@@ -63,6 +64,7 @@ public class MatchInfoAdapter extends ArrayAdapter<String> {
         tvPlayerName.setText(name);
 
         EditText etPlayerResult = convertView.findViewById(R.id.et_match_info_player_result);
+        etPlayerResult.setText("0");
         etPlayerResult.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

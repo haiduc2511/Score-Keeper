@@ -27,6 +27,14 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        initData();
+        initRecyclerView();
+        initAddButton();
+
+    }
+
+    public void initData() {
+        //gonna delete this 4 lines later
         String playersNames = getIntent().getExtras().getString("Players' Names");
         int gameId = getIntent().getExtras().getInt("Game's id", -2);
         TextView tv = findViewById(R.id.tv_test);
@@ -39,17 +47,21 @@ public class GameActivity extends AppCompatActivity {
             matchViewModel = new MatchViewModel(dataSource, gameViewModel.getLatestGame());
         } else {
             //-1 vì chỉ số index đầu của sql là 1 còn Array java là 0
-            matchViewModel = new MatchViewModel(dataSource, gameViewModel.getGames().get(gameId - 1));
+            //phải sửa
+            matchViewModel = new MatchViewModel(dataSource, gameViewModel.getGameById(gameId));
         }
 
-        TextView tv2 = findViewById(R.id.textView);
-        tv2.setText(Integer.toString(matchViewModel.getGame().getGameId()));
-//
-        rvListMatches = findViewById(R.id.rv_list_matches);
-        rvListMatches.setLayoutManager(new GridLayoutManager(this, 1));
-        adapter = new MatchAdapter(this, matchViewModel, gameViewModel);
-        rvListMatches.setAdapter(adapter);
 
+    }
+
+    public void initRecyclerView() {
+        rvListMatches = findViewById(R.id.rv_list_matches);
+        rvListMatches.setLayoutManager(new GridLayoutManager(this, matchViewModel.getGame().getGameNumberOfPlayers() + 1));
+        adapter = new MatchAdapter(this, matchViewModel);
+        rvListMatches.setAdapter(adapter);
+    }
+
+    public void initAddButton() {
         fabAddMatch = findViewById(R.id.fab_add_match);
         fabAddMatch.setOnClickListener(v -> {
             FragmentManager fragmentManager = getSupportFragmentManager();

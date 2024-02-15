@@ -53,7 +53,7 @@ public class AddUpdateMatchFragment extends Fragment {
         });
 
         lvMatchInfos = view.findViewById(R.id.lv_match_infos);
-        MatchInfoAdapter adapter = new MatchInfoAdapter(context, matchViewModel);
+        adapter = new MatchInfoAdapter(context, matchViewModel);
         lvMatchInfos.setAdapter(adapter);
 
         btConfirm = view.findViewById(R.id.bt_confirm);
@@ -61,7 +61,7 @@ public class AddUpdateMatchFragment extends Fragment {
             matchViewModel.addNewMatch(
                     new Match(matchViewModel.getGame().getGameId(),
                             matchViewModel.getGame().getGamePlayersNames(),
-                            StringUtils.convertArrayListToString(adapter.getResults())));
+                            StringUtils.convertArrayListToString(adapter.getResultsAndAddIndex())));
         });
 
         return view;
