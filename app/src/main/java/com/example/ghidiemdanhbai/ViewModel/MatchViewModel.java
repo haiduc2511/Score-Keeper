@@ -52,10 +52,11 @@ public class MatchViewModel {
 
     public List<String> getListResult() {
         List<String> playersNamesList = StringUtils.convertStringToArrayList(getGame().getGamePlayersNames());
+        playersNamesList.add(0, "index");
         List<String> resultsList = new ArrayList<>();
         for (int i = 0; i < matches.size(); i++) {
             List<String> matchResultList = StringUtils.convertStringToArrayList(matches.get(i).getMatchPlayersResults());
-            for (int j = 0; j < game.getGameNumberOfPlayers(); j++) {
+            for (int j = 0; j < game.getGameNumberOfPlayers() + 1; j++) {
                 resultsList.add(playersNamesList.get(j) + " " + matchResultList.get(j));
             }
         }

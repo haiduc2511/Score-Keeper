@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -34,7 +35,7 @@ public class MatchInfoAdapter extends ArrayAdapter<String> {
     }
 
     public List<String> getResultsAndAddIndex() {
-        //results.add(0, Integer.toString(matchViewModel.getMatches().size() + 1));
+        results.add(0, Integer.toString(matchViewModel.getMatches().size() + 1));
         return results;
     }
 
@@ -47,7 +48,7 @@ public class MatchInfoAdapter extends ArrayAdapter<String> {
         numbers = context.getResources().getStringArray(R.array.numbers);
         results = new ArrayList<>();
         for (int i = 0; i < names.size(); i++) {
-            results.add("0");
+        results.add("0");
         }
     }
 
@@ -89,6 +90,7 @@ public class MatchInfoAdapter extends ArrayAdapter<String> {
         numberPicker.setDisplayedValues(numbers);
         numberPicker.setOnValueChangedListener((picker, oldVal, newVal) -> {
             etPlayerResult.setText(numbers[newVal]);
+            Toast.makeText(context, position + " " + etPlayerResult.getText().toString() + " " + numbers[newVal] + " " + newVal, Toast.LENGTH_SHORT).show();
         });
 
         return convertView;
