@@ -9,22 +9,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ghidiemdanhbai.Model.Match;
 import com.example.ghidiemdanhbai.R;
-import com.example.ghidiemdanhbai.ViewModel.GameViewModel;
 import com.example.ghidiemdanhbai.ViewModel.MatchViewModel;
 
 import java.util.List;
 
-public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHolder> {
+public class MatchPlayerAdapter extends RecyclerView.Adapter<MatchPlayerAdapter.MatchViewHolder> {
     private Context context;
     private MatchViewModel matchViewModel;
     private List<String> resultList;
 
-    public MatchAdapter(Context context, MatchViewModel matchViewModel) {
+    public MatchPlayerAdapter(Context context, MatchViewModel matchViewModel) {
         this.context = context;
         this.matchViewModel = matchViewModel;
-        resultList = matchViewModel.getListResult();
+        resultList = matchViewModel.getListPlayer();
     }
 
     @Override
@@ -36,13 +34,13 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
     @NonNull
     @Override
     public MatchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_match, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_match_player, parent, false);
         return new MatchViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MatchViewHolder holder, int position) {
-        holder.tvMatchPlayersResults.setText(resultList.get(position).toString());
+        holder.tvMatchPlayerName.setText(resultList.get(position).toString());
     }
 
     @Override
@@ -51,12 +49,12 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
     }
 
     class MatchViewHolder extends RecyclerView.ViewHolder {
-        TextView tvMatchPlayersResults;
+        TextView tvMatchPlayerName;
 
 
         public MatchViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.tvMatchPlayersResults = itemView.findViewById(R.id.tv_match_players_results);
+            this.tvMatchPlayerName = itemView.findViewById(R.id.tv_match_player_name);
         }
     }
 

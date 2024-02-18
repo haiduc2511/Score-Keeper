@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.TextView;
@@ -29,13 +30,19 @@ public class MatchInfoAdapter extends ArrayAdapter<String> {
     private List<String> names;
     private List<String> results;
     private String[] numbers;
+    private List<EditText> editTextList;
+    private boolean indexAdded = false;
 
     public List<String> getNames() {
         return names;
     }
 
     public List<String> getResultsAndAddIndex() {
-        results.add(0, Integer.toString(matchViewModel.getMatches().size() + 1));
+        if (!indexAdded) {
+            results.add(0, Integer.toString(matchViewModel.getMatches().size() + 1));
+        } else {
+            results.set(0, Integer.toString(matchViewModel.getMatches().size() + 1));
+        }
         return results;
     }
 
@@ -48,8 +55,9 @@ public class MatchInfoAdapter extends ArrayAdapter<String> {
         numbers = context.getResources().getStringArray(R.array.numbers);
         results = new ArrayList<>();
         for (int i = 0; i < names.size(); i++) {
-        results.add("0");
+            results.add("0");
         }
+        editTextList = new ArrayList<>();
     }
 
     @NonNull
@@ -66,22 +74,7 @@ public class MatchInfoAdapter extends ArrayAdapter<String> {
 
         EditText etPlayerResult = convertView.findViewById(R.id.et_match_info_player_result);
         etPlayerResult.setText("0");
-        etPlayerResult.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                results.set(position, etPlayerResult.getText().toString());
-            }
-        });
+        editTextList.add(etPlayerResult);
 
         NumberPicker numberPicker = convertView.findViewById(R.id.np_match_info_player_result_2);
         numberPicker.setMinValue(0);
@@ -90,7 +83,7 @@ public class MatchInfoAdapter extends ArrayAdapter<String> {
         numberPicker.setDisplayedValues(numbers);
         numberPicker.setOnValueChangedListener((picker, oldVal, newVal) -> {
             etPlayerResult.setText(numbers[newVal]);
-            Toast.makeText(context, position + " " + etPlayerResult.getText().toString() + " " + numbers[newVal] + " " + newVal, Toast.LENGTH_SHORT).show();
+            results.set(position, etPlayerResult.getText().toString());
         });
 
         return convertView;

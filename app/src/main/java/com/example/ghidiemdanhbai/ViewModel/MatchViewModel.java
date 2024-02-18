@@ -49,6 +49,11 @@ public class MatchViewModel {
     private List<Match> getAllMatches() {
         return dataSource.getAllMatchesFromGameFromDatabase(game);
     }
+    public List<String> getListPlayer() {
+        List<String> playersNamesList = StringUtils.convertStringToArrayList(getGame().getGamePlayersNames());
+        playersNamesList.add(0, "index");
+        return playersNamesList;
+    }
 
     public List<String> getListResult() {
         List<String> playersNamesList = StringUtils.convertStringToArrayList(getGame().getGamePlayersNames());

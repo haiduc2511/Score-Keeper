@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:text="Lịch sử thi đấu"
         android:textSize="30dp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

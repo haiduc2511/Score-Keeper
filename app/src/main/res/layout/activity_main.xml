@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.MainActivity"
-    android:background="@drawable/blue">
+    android:background="@drawable/background_main">
 
     <TextView
         android:id="@+id/greetings"
@@ -33,7 +33,7 @@
             android:id="@+id/bt_new_game"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:background="#151e3d"
+            android:background="@drawable/dark_blue_new_game_2_cut"
             android:gravity="center"
             android:text="Tạo ván mới"
             android:textColor="@color/white"
@@ -56,7 +56,7 @@
             android:id="@+id/bt_history"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:background="#151e3d"
+            android:background="@drawable/dark_blue_history_2"
             android:gravity="center"
             android:text="Lịch sử thi đấu"
             android:textColor="@color/white"
